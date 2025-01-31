@@ -19,6 +19,10 @@ public class ComentarioService {
     }
 
     public String deleteComentario(long id) {
+        Comentario comentario = comentarioRepository.findById(id);
+        if (comentario == null) {
+            return "Comentario doesn't exist";
+        }
         comentarioRepository.deleteById(id);
         return "Comentario deleted succesfully";
     }

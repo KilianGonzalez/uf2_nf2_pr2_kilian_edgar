@@ -19,7 +19,11 @@ public class PublicacionService {
     }
 
     public String deletePublicacion(long id) {
+        Publicacion publicacion = publicacionRepository.findById(id);
+        if (publicacion == null) {
+            return "Publication doesn't exist";
+        }
         publicacionRepository.deleteById(id);
-        return "Publicacion deleted succesfully";
+        return "Publication deleted succesfully";
     }
 }

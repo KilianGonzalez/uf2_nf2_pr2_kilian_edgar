@@ -17,4 +17,7 @@ public class ComentarioController {
 
     @PostMapping
     public String addComentario(@RequestBody Comentario comentario) {return comentarioService.addComentario(comentario);}
+
+    @DeleteMapping("/{id}")
+    public String deleteComentario(@PathVariable long id) {return comentarioService.deleteComentario(id);}
 }
