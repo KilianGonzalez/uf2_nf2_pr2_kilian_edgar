@@ -1,7 +1,9 @@
 package com.example.uf2_nf2_pr2_kilian_edgar.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Set;
 
@@ -14,6 +16,8 @@ public class Publicacion {
     private long id;
     private String titulo;
     private String contenido;
+
+    @CreationTimestamp
     private LocalDate f_creacion;
 
     //Constructores

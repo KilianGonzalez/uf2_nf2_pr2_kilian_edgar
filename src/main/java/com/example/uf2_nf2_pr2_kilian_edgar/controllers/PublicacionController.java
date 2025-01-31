@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/publicacion")
 public class PublicacionController {
 
     @Autowired
@@ -17,4 +17,7 @@ public class PublicacionController {
 
     @PostMapping
     public String addPublicacion(@RequestBody Publicacion publicacion) {return publicacionService.addPublicacion(publicacion);}
+
+    @DeleteMapping("/{id}")
+    public String deletePublicacion(@PathVariable long id) {return publicacionService.deletePublicacion(id);}
 }

@@ -17,4 +17,9 @@ public class ComentarioService {
         comentarioRepository.save(comentario);
         return "Comentario added succesfully";
     }
+
+    public String deleteComentario(long id) {
+        comentarioRepository.deleteById(id);
+        return "Comentario deleted succesfully";
+    }
 }

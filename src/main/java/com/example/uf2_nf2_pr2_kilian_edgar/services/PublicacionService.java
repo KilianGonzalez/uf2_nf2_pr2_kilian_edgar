@@ -17,4 +17,9 @@ public class PublicacionService {
         publicacionRepository.save(publicacion);
         return "Publicacion added succesfully";
     }
+
+    public String deletePublicacion(long id) {
+        publicacionRepository.deleteById(id);
+        return "Publicacion deleted succesfully";
+    }
 }

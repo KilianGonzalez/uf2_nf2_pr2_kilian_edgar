@@ -1,16 +1,21 @@
 package com.example.uf2_nf2_pr2_kilian_edgar.entities;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.cglib.core.Local;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
+@Entity
 public class Comentario {
     //Campos tabla Comentario
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String contenido;
+
+    @CreationTimestamp
     private LocalDate f_creacion;
 
     //Constructores
