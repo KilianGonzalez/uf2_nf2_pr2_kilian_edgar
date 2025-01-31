@@ -15,8 +15,14 @@ public class PublicacionController {
     @GetMapping
     public String getAllPublicaciones(){return publicacionService.getAllPublicaciones();}
 
+    @GetMapping("/{id}")
+    public String getPublicacionById(@PathVariable long id) {return publicacionService.getPublicacionById(id);}
+
     @PostMapping
     public String addPublicacion(@RequestBody Publicacion publicacion) {return publicacionService.addPublicacion(publicacion);}
+
+    @PutMapping("/{id}")
+    public String updatePublicacion(@PathVariable long id, @RequestBody Publicacion nuevaPublicacion) {return publicacionService.updatePublicacion(id, nuevaPublicacion);}
 
     @DeleteMapping("/{id}")
     public String deletePublicacion(@PathVariable long id) {return publicacionService.deletePublicacion(id);}

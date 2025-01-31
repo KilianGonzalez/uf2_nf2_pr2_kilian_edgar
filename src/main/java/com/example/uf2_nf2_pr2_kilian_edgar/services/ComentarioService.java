@@ -1,9 +1,13 @@
 package com.example.uf2_nf2_pr2_kilian_edgar.services;
 
 import com.example.uf2_nf2_pr2_kilian_edgar.entities.Comentario;
+import com.example.uf2_nf2_pr2_kilian_edgar.entities.Publicacion;
 import com.example.uf2_nf2_pr2_kilian_edgar.repository.ComentarioRepository;
+import com.example.uf2_nf2_pr2_kilian_edgar.repository.PublicacionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ComentarioService {
@@ -11,11 +15,24 @@ public class ComentarioService {
     @Autowired
     private ComentarioRepository comentarioRepository;
 
-    public String getAllComentarios() {return comentarioRepository.findAll().toString();}
+    @Autowired
+    private PublicacionRepository publicacionRepository;
 
-    public String addComentario(Comentario comentario) {
+    public List<Comentario> getComentariosByPublicacion(long publicacionId) {
+        return comentarioRepository.findByPublicacionId(publicacionId);
+    }
+
+    public String addComentario(long publicacionId, Comentario comentario) {
+        Publicacion publicacion = publicacionRepository.findById(publicacionId);
+
+        if (publicacion == null) {
+            return "Publicacion doesn't exist";
+        }
+
+        comentario.setPublicacion(publicacion);
         comentarioRepository.save(comentario);
-        return "Comentario added succesfully";
+
+        return "Comentario added successfully";
     }
 
     public String deleteComentario(long id) {

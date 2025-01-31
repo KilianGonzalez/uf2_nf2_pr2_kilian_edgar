@@ -4,8 +4,8 @@ import com.example.uf2_nf2_pr2_kilian_edgar.entities.Comentario;
 import com.example.uf2_nf2_pr2_kilian_edgar.entities.Publicacion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -23,7 +23,11 @@ public class ComentarioRepository {
 
     public Comentario findById(long id) {return entityManager.find(Comentario.class, id);}
 
-    public List<Comentario> findAll() {return entityManager.createQuery("FROM Comentario c").getResultList();}
+    public List<Comentario> findByPublicacionId(long publicacionId) {
+        return entityManager.createQuery("FROM Comentario c WHERE c.publicacion.id = :publicacionId", Comentario.class)
+                .setParameter("publicacionId", publicacionId)
+                .getResultList();
+    }
 
     @Transactional
     public void deleteById(long id) {

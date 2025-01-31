@@ -13,9 +13,37 @@ public class PublicacionService {
 
     public String getAllPublicaciones() {return publicacionRepository.findAll().toString();}
 
+    public String getPublicacionById(long id) {
+        Publicacion publicacion = publicacionRepository.findById(id);
+        if (publicacion == null) {
+            return "Publicacion doesn't exist";
+        }
+        return publicacion.toString();
+    }
+
     public String addPublicacion(Publicacion publicacion) {
         publicacionRepository.save(publicacion);
         return "Publicacion added succesfully";
+    }
+
+    public String updatePublicacion(long id, Publicacion nuevaPublicacion) {
+        Publicacion publicacionExistente = publicacionRepository.findById(id);
+
+        if (publicacionExistente == null) {
+            return "Publicacion doesn't exist";
+        }
+
+        if (nuevaPublicacion.getTitulo() != null && !nuevaPublicacion.getTitulo().isEmpty()) {
+            publicacionExistente.setTitulo(nuevaPublicacion.getTitulo());
+        }
+
+        if (nuevaPublicacion.getContenido() != null && !nuevaPublicacion.getContenido().isEmpty()) {
+            publicacionExistente.setContenido(nuevaPublicacion.getContenido());
+        }
+
+        publicacionRepository.save(publicacionExistente);
+
+        return "Publicacion updated successfully";
     }
 
     public String deletePublicacion(long id) {
