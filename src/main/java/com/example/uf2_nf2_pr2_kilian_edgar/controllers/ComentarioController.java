@@ -8,18 +8,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/comentario")
+@RequestMapping("/api")
 public class ComentarioController {
 
     @Autowired
     private ComentarioService comentarioService;
 
-    @GetMapping("/publicacion/{publicacionId}/comentario")
+    @GetMapping("/posts/{publicacionId}/comments")
     public List<Comentario> getComentariosByPublicacion(@PathVariable long publicacionId) {return comentarioService.getComentariosByPublicacion(publicacionId);}
 
-    @PostMapping("/publicacion/{publicacionId}/comentario")
+    @PostMapping("/posts/{publicacionId}/comments")
     public String addComentario(@PathVariable long publicacionId, @RequestBody Comentario comentario) {return comentarioService.addComentario(publicacionId, comentario);}
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/comments/{id}")
     public String deleteComentario(@PathVariable long id) {return comentarioService.deleteComentario(id);}
 }

@@ -1,5 +1,6 @@
 package com.example.uf2_nf2_pr2_kilian_edgar.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -32,6 +33,7 @@ public class Publicacion {
 
     //Relaciones
     @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private Set<Comentario> comentarios;
 
     //Getters y Setters

@@ -1,5 +1,6 @@
 package com.example.uf2_nf2_pr2_kilian_edgar.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.cglib.core.Local;
@@ -30,6 +31,7 @@ public class Comentario {
     //Relaciones
     @ManyToOne
     @JoinColumn(name = "publicacion_id")
+    @JsonBackReference
     private Publicacion publicacion;
 
     //Getters y Setters
