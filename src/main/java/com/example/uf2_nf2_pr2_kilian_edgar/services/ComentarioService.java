@@ -29,6 +29,7 @@ public class ComentarioService {
             return "Publicacion doesn't exist";
         }
 
+        comentario.setPublicacion(publicacion);
         comentarioRepository.save(comentario);
 
         return "Comentario added successfully";

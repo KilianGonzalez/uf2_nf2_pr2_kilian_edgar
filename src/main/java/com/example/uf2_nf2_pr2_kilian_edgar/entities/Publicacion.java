@@ -1,11 +1,13 @@
 package com.example.uf2_nf2_pr2_kilian_edgar.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -32,7 +34,7 @@ public class Publicacion {
     }
 
     //Relaciones
-    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "publicacion", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference
     private Set<Comentario> comentarios;
 
@@ -79,7 +81,6 @@ public class Publicacion {
     }
 
     //TO STRING
-
     @Override
     public String toString() {
         return "Publicaciones{" +
@@ -87,7 +88,6 @@ public class Publicacion {
                 ", titulo='" + titulo + '\'' +
                 ", contenido='" + contenido + '\'' +
                 ", f_creacion=" + f_creacion +
-                ", comentarios=" + comentarios +
                 '}';
     }
 }

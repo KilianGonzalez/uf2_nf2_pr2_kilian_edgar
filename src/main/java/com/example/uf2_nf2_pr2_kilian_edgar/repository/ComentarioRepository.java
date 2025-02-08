@@ -24,7 +24,7 @@ public class ComentarioRepository {
     public Comentario findById(long id) {return entityManager.find(Comentario.class, id);}
 
     public List<Comentario> findByPublicacionId(long publicacionId) {
-        return entityManager.createQuery("FROM Comentario c WHERE c.publicacion.id = :publicacionId", Comentario.class)
+        return entityManager.createQuery("FROM Comentario c WHERE c.publicacion.id = :publicacionId")
                 .setParameter("publicacionId", publicacionId)
                 .getResultList();
     }
